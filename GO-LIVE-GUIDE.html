@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AB Paving – Go Live Guide</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy: #1a2e4a; --navy-dark: #0f1d30; --yellow: #f5c800; --grey: #4a5568; --light: #f4f6f9; }
+  body { font-family: system-ui, -apple-system, sans-serif; color: #333; background: var(--light); }
+  .doc { max-width: 900px; margin: 0 auto; background: white; box-shadow: 0 4px 40px rgba(0,0,0,.1); }
+  header { background: var(--navy-dark); padding: 40px 56px; }
+  header h1 { font-size: 30px; font-weight: 900; color: white; margin-bottom: 6px; }
+  header h1 span { color: var(--yellow); }
+  header p { color: rgba(255,255,255,.55); font-size: 14px; margin-top: 6px; }
+  .badge { display: inline-block; background: var(--yellow); color: var(--navy-dark); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; margin-top: 14px; }
+  .done-banner { background: #e8f5e9; border-left: 5px solid #43a047; padding: 20px 56px; }
+  .done-banner h2 { font-size: 15px; font-weight: 800; color: #2e7d32; margin-bottom: 10px; }
+  .done-banner ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 5px 24px; }
+  .done-banner li { font-size: 14px; color: #2e7d32; }
+  .done-banner li::before { content: '✓ '; font-weight: 900; }
+  main { padding: 48px 56px; }
+  section { margin-bottom: 52px; }
+  h2 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid var(--yellow); display: flex; align-items: center; gap: 12px; }
+  .num { width: 32px; height: 32px; background: var(--yellow); color: var(--navy-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 900; flex-shrink: 0; }
+  h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin: 22px 0 10px; }
+  p { font-size: 15px; color: var(--grey); line-height: 1.75; margin-bottom: 12px; }
+  ul, ol { padding-left: 20px; margin-bottom: 12px; }
+  li { font-size: 15px; color: var(--grey); line-height: 1.75; margin-bottom: 6px; }
+  code { background: #f0f2f5; color: #c0392b; padding: 2px 7px; border-radius: 3px; font-size: 13px; font-family: 'Courier New', monospace; }
+  .step { background: var(--light); border-left: 4px solid var(--yellow); border-radius: 4px; padding: 20px 22px; margin: 14px 0; }
+  .step strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); margin-bottom: 10px; font-weight: 800; }
+  .tip { background: #fff8d6; border-left: 4px solid #f0c500; border-radius: 4px; padding: 14px 18px; margin: 14px 0; font-size: 14px; color: #555; }
+  .tip::before { content: '💡  Tip: '; font-weight: 700; }
+  .warn { background: #fff3f3; border-left: 4px solid #e53935; border-radius: 4px; padding: 14px 18px; margin: 14px 0; font-size: 14px; color: #555; }
+  .warn::before { content: '⚠️  Important: '; font-weight: 700; color: #c0392b; }
+  .good { background: #e8f5e9; border-left: 4px solid #43a047; border-radius: 4px; padding: 14px 18px; margin: 14px 0; font-size: 14px; color: #2e7d32; font-weight: 600; }
+  .good::before { content: '✅  Already done: '; font-weight: 800; }
+  .check { list-style: none; padding: 0; border: 1px solid #e2e8f0; border-radius: 5px; overflow: hidden; margin: 16px 0; }
+  .check li { padding: 11px 16px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--grey); }
+  .check li:last-child { border-bottom: none; }
+  .check li::before { content: '☐'; font-size: 18px; flex-shrink: 0; }
+  .highlight { background: var(--navy); color: white; padding: 18px 22px; border-radius: 5px; font-size: 15px; margin: 14px 0; line-height: 2; }
+  .highlight strong { color: var(--yellow); }
+  .file-tree { background: var(--navy-dark); color: #8bc34a; padding: 20px 24px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.9; margin: 14px 0; }
+  .file-tree .dir { color: #64b5f6; }
+  .file-tree .c { color: #ce93d8; }
+  .file-tree .j { color: #ffcc02; }
+  .file-tree .n { color: #555; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--navy); color: white; padding: 10px 14px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  td { padding: 10px 14px; border-bottom: 1px solid #eee; color: var(--grey); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--light); }
+  footer { background: var(--navy-dark); padding: 22px 56px; text-align: center; color: rgba(255,255,255,.4); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header>
+  <h1>AB Paving &amp; Landscaping<br><span>Go Live Guide</span></h1>
+  <p>Your website is built, fixed and ready. This guide gets it live in under an hour.</p>
+  <span class="badge">Step-by-step · No tech experience needed</span>
+</header>
+
+<div class="done-banner">
+  <h2>Already built in — nothing extra to set up:</h2>
+  <ul>
+    <li>Quote form live &amp; connected to Formspree</li>
+    <li>Real phone number (07492 263394) everywhere</li>
+    <li>Google Schema / LocalBusiness markup</li>
+    <li>Canonical URLs on all 8 pages</li>
+    <li>Open Graph tags (Facebook / WhatsApp sharing)</li>
+    <li>HTTPS redirect via .htaccess</li>
+    <li>Browser caching headers (.htaccess)</li>
+    <li>Security headers (.htaccess)</li>
+    <li>sitemap.xml ready for Google</li>
+    <li>Gallery lightbox + filter buttons</li>
+    <li>Mobile hamburger menu</li>
+    <li>Accessibility skip-links</li>
+  </ul>
+</div>
+
+<main>
+
+<!-- FILE STRUCTURE -->
+<section>
+  <h2><span class="num">✦</span> What's in Your Zip</h2>
+  <p>Unzip <code>abpaving-final.zip</code> and you'll see this structure. Upload the contents exactly as they are — do not rename or move any folders.</p>
+  <div class="file-tree">
+<span class="dir">abpaving-final/</span>
+├── index.html                     <span class="n">← Homepage</span>
+├── block-paving-driveways.html    <span class="n">← Service page</span>
+├── patios-slabbing.html           <span class="n">← Service page</span>
+├── landscaping.html               <span class="n">← Service page</span>
+├── garden-transformations.html    <span class="n">← Service page</span>
+├── gallery.html
+├── about.html
+├── reviews.html
+├── sitemap.xml                    <span class="n">← Submit to Google Search Console</span>
+├── .htaccess                      <span class="n">← HTTPS + caching + security (auto-loads)</span>
+│
+├── <span class="dir">css/</span>
+│   ├── <span class="c">style.css</span>       <span class="n">← Shared across all pages</span>
+│   ├── <span class="c">home.css</span>        <span class="n">← Homepage only</span>
+│   └── <span class="c">pages.css</span>       <span class="n">← All inner pages</span>
+│
+├── <span class="dir">js/</span>
+│   └── <span class="j">main.js</span>         <span class="n">← Mobile menu, gallery, form, scroll</span>
+│
+└── <span class="dir">images/</span>
+    └── <span class="n">25 photos + logo + favicon</span>
+  </div>
+  <div class="warn">The <code>index.html</code> must sit directly inside your hosting root (<code>htdocs/</code> or <code>public_html/</code>). If it ends up inside a subfolder like <code>htdocs/abpaving-final/index.html</code> the site will not load.</div>
+</section>
+
+<!-- STEP 1: UPLOAD -->
+<section>
+  <h2><span class="num">1</span> Upload to Fasthosts</h2>
+
+  <h3>Option A — Fasthosts File Manager (easiest — no software needed)</h3>
+  <div class="step">
+    <strong>Step by step</strong>
+    1. Log in at <strong>control.fasthosts.co.uk</strong><br><br>
+    2. Go to <strong>Web Hosting → Manage → File Manager</strong><br><br>
+    3. Open the <strong>htdocs</strong> folder — this is your website root<br><br>
+    4. Delete any placeholder files already in there (like a default <code>index.html</code>)<br><br>
+    5. Click <strong>Upload</strong> and upload <code>abpaving-final.zip</code><br><br>
+    6. Right-click the zip file → <strong>Extract Here</strong><br><br>
+    7. An <code>abpaving-final/</code> folder will appear — open it<br><br>
+    8. Select all files and folders inside it and <strong>move them up into <code>htdocs/</code></strong><br><br>
+    9. <code>htdocs/</code> should now directly contain: <code>index.html</code>, <code>css/</code>, <code>js/</code>, <code>images/</code>, <code>sitemap.xml</code>, <code>.htaccess</code>
+  </div>
+
+  <h3>Option B — FTP with FileZilla (better for large uploads)</h3>
+  <ol>
+    <li>Download <strong>FileZilla</strong> free from filezilla-project.org</li>
+    <li>In Fasthosts → <strong>FTP &amp; SSH</strong> → note your FTP hostname, username and password</li>
+    <li>Open FileZilla, enter those at the top bar, click <strong>Quickconnect</strong></li>
+    <li>Navigate to <code>htdocs/</code> on the right panel</li>
+    <li>On the left panel, open your unzipped <code>abpaving-final</code> folder</li>
+    <li>Select everything inside and drag it across into <code>htdocs/</code></li>
+  </ol>
+  <div class="tip">Fasthosts support are easy to reach — call <strong>0333 0142 700</strong>. Say "I need help uploading files to my htdocs folder via File Manager." They'll guide you through it.</div>
+</section>
+
+<!-- STEP 2: SSL -->
+<section>
+  <h2><span class="num">2</span> Activate Free SSL (HTTPS)</h2>
+  <p>Your <code>.htaccess</code> already redirects all visitors to <code>https://</code> — but you need to activate the certificate first or browsers will show a security warning.</p>
+  <div class="step">
+    <strong>Activate on Fasthosts</strong>
+    1. In Fasthosts control panel → <strong>Web Hosting → Manage</strong><br><br>
+    2. Find <strong>SSL Certificates</strong> or <strong>Free SSL</strong> in the Security section<br><br>
+    3. Click <strong>Activate</strong> or <strong>Install</strong> — it issues automatically via Let's Encrypt<br><br>
+    4. Allow up to 1 hour for the certificate to issue (usually much faster)<br><br>
+    5. Visit <strong>https://abpaving.online</strong> — you should see a padlock in the browser bar
+  </div>
+</section>
+
+<!-- STEP 3: TEST -->
+<section>
+  <h2><span class="num">3</span> Test Your Live Site</h2>
+  <p>Go through every item on this list on both your desktop and your phone before you start promoting it.</p>
+  <ul class="check">
+    <li>Homepage loads correctly at https://abpaving.online (padlock visible)</li>
+    <li>Logo appears in the top-left corner on all pages</li>
+    <li>All photos load — hero image, service cards, gallery, about page</li>
+    <li>Navigation links all work — click every one</li>
+    <li>Services dropdown appears on hover (desktop)</li>
+    <li>Hamburger menu opens and closes on mobile (test on your phone)</li>
+    <li>Phone number 07492 263394 is clickable and dials on mobile</li>
+    <li>Floating "Free Quote – Call Now" button visible on every page</li>
+    <li>Quote form — fill it in and submit. You receive a confirmation email.</li>
+    <li>Gallery lightbox opens when you click a photo</li>
+    <li>Gallery filter buttons (All / Driveways / Patios / Landscaping) work</li>
+    <li>Footer links work on every page</li>
+  </ul>
+
+  <h3>Something not working?</h3>
+  <table>
+    <tr><th>Problem</th><th>Fix</th></tr>
+    <tr><td>Page looks plain / unstyled text</td><td><code>css/</code> folder uploaded to wrong place. Must be at <code>htdocs/css/</code> with all 3 CSS files inside.</td></tr>
+    <tr><td>Photos not loading</td><td>Check <code>images/</code> is at <code>htdocs/images/</code>. File names are case-sensitive — <code>Hero.jpg</code> and <code>hero.jpg</code> are different.</td></tr>
+    <tr><td>Form submits but no email</td><td>Check spam folder first. Then log in to formspree.io to confirm submissions are arriving there.</td></tr>
+    <tr><td>Shows http:// not https://</td><td>SSL certificate hasn't issued yet — wait up to an hour after activating.</td></tr>
+    <tr><td>Hamburger menu doesn't work</td><td><code>js/main.js</code> missing. Must be at <code>htdocs/js/main.js</code>.</td></tr>
+  </table>
+</section>
+
+<!-- STEP 4: FORM -->
+<section>
+  <h2><span class="num">4</span> Your Quote Form</h2>
+  <div class="good">The form is already connected to Formspree (endpoint: xjgepkzw). You just need to verify it's sending to the right email.</div>
+  <p>Log in to <strong>formspree.io</strong> and check:</p>
+  <ol>
+    <li>The form labelled <strong>AB Paving</strong> is sending to your correct email address</li>
+    <li>Submit a test enquiry from the live site and confirm you receive it</li>
+    <li>In Formspree settings, you can customise the email subject line and reply-to address</li>
+  </ol>
+  <div class="tip">Set the reply-to as the customer's email address in Formspree settings — that way you can reply to enquiries directly from your inbox without copying email addresses.</div>
+  <div class="warn">Free Formspree plan = 50 submissions/month. That's more than enough to start. If you get busier, upgrade to their paid plan (~£8/month) or switch to a self-hosted solution.</div>
+</section>
+
+<!-- STEP 5: GOOGLE -->
+<section>
+  <h2><span class="num">5</span> Get on Google</h2>
+  <p>The website is just one piece. Google Business Profile is where most local paving enquiries in Glasgow actually come from.</p>
+
+  <h3>Google Business Profile — do this today (free, takes 20 minutes)</h3>
+  <div class="step">
+    <strong>How to set it up</strong>
+    1. Go to <strong>business.google.com</strong><br><br>
+    2. Click <strong>Manage now</strong> → search "AB Paving &amp; Landscaping"<br><br>
+    3. If it doesn't exist, click <strong>Add your business to Google</strong><br><br>
+    4. Category: <strong>Paving Contractor</strong> — add <strong>Landscaper</strong> as secondary<br><br>
+    5. Add your address, phone <strong>07492 263394</strong>, website <strong>https://abpaving.online</strong> and opening hours<br><br>
+    6. Verify by postcard — Google posts a code to your address (arrives in 5–7 days)<br><br>
+    7. Once verified: add 10+ project photos, logo, team photo — and get your first reviews
+  </div>
+  <div class="tip">The review link from your Google Business dashboard is gold. Send it to every satisfied customer by text or WhatsApp. Even 10 good reviews will put you above most Glasgow competitors in Maps.</div>
+
+  <h3>Google Search Console — submit your sitemap</h3>
+  <ol>
+    <li>Go to <strong>search.google.com/search-console</strong> → Add Property → enter <code>https://abpaving.online</code></li>
+    <li>Verify ownership (HTML tag method is easiest — paste a line into <code>index.html</code> head)</li>
+    <li>Click <strong>Sitemaps</strong> → type <code>sitemap.xml</code> → Submit</li>
+    <li>Click <strong>URL Inspection</strong> → paste your homepage URL → <strong>Request Indexing</strong></li>
+    <li>Repeat for each page — Google will index your site within a few days</li>
+  </ol>
+</section>
+
+<!-- STEP 6: WHAT NEXT -->
+<section>
+  <h2><span class="num">6</span> First Week Priorities</h2>
+
+  <div class="highlight">
+    <strong>Day 1 — straight after the site goes live:</strong><br>
+    ✓ Run through the full test checklist above<br>
+    ✓ Submit a test quote form — confirm you receive the email<br>
+    ✓ Post on Facebook: "Our new website is live — check it out at abpaving.online"<br>
+    ✓ Start your Google Business Profile<br>
+    ✓ Text your last 5–10 customers asking for a Google review
+  </div>
+
+  <h3>Facebook content that actually gets enquiries</h3>
+  <p>Post 2–3 times a week. What works: before and after photos of completed jobs, photos of the team working on-site, short video walkarounds of a finished driveway or patio. Always end each post with your phone number and "Call for a free quote."</p>
+
+  <h3>Google Ads — fastest way to fill your diary</h3>
+  <p>Once you have a handful of Google reviews and the site is indexed, £5–10 per day targeting <strong>"block paving Glasgow"</strong>, <strong>"driveway Glasgow"</strong> and <strong>"patio Glasgow"</strong> will bring in leads almost immediately. One booked job typically covers weeks of ad spend.</p>
+
+  <h3>Checkatrade</h3>
+  <p>Your site already references Checkatrade as a trust signal. If you're not listed yet, it's worth considering — many Glasgow homeowners specifically search for Checkatrade-approved tradespeople. Around £70–90/month, paid back by a single job.</p>
+</section>
+
+<!-- MAKING CHANGES -->
+<section>
+  <h2><span class="num">✦</span> Making Changes to Your Site</h2>
+  <p>One file controls the look of all pages — so a change to <code>style.css</code> updates the nav and footer everywhere in one go. You only need to re-upload the file you changed.</p>
+  <table>
+    <tr><th>What you want to change</th><th>File to edit and re-upload</th></tr>
+    <tr><td>Colours, nav bar, footer, buttons, trust bar</td><td><code>css/style.css</code></td></tr>
+    <tr><td>Homepage layout (hero, services, gallery preview)</td><td><code>css/home.css</code></td></tr>
+    <tr><td>Service pages, gallery, about, reviews layout</td><td><code>css/pages.css</code></td></tr>
+    <tr><td>Any page text or wording</td><td>The relevant <code>.html</code> file</td></tr>
+    <tr><td>Replace a photo</td><td>Upload new image to <code>images/</code> using the exact same filename</td></tr>
+    <tr><td>Phone number</td><td>Find &amp; replace <code>07492263394</code> across all <code>.html</code> files</td></tr>
+    <tr><td>Add new gallery photos</td><td>Add image to <code>images/</code>, add a new <code>.m-item</code> block in <code>gallery.html</code></td></tr>
+  </table>
+  <div class="tip">Before editing any file, save a backup copy with a name like <code>index-backup.html</code>. That way you can always restore the original if something goes wrong.</div>
+</section>
+
+</main>
+
+<footer>AB Paving &amp; Landscaping &nbsp;·&nbsp; abpaving.online &nbsp;·&nbsp; Go Live Guide</footer>
+</div>
+</body>
+</html>
