@@ -1,0 +1,21 @@
+# .gitignore file for preventing unwanted files
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Build directories
+/dist/
+built/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Environment variable files
+.env
+.env.local
